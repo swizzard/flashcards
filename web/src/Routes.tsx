@@ -26,6 +26,12 @@ const Routes = () => {
           <Route path="/stacks/{id}" page={StackStackPage} name="stack" />
           <Route path="/stacks" page={StackStacksPage} name="stacks" />
         </Set>
+        <Set title="Cards" titleTo="cards" buttonLabel="New Card" buttonTo="newCard">
+          <Route path="/cards/new" page={CardNewCardPage} name="newCard" />
+          <Route path="/cards/{id}/edit" page={CardEditCardPage} name="editCard" />
+          <Route path="/cards/{id}" page={CardCardPage} name="card" />
+          <Route path="/cards" page={CardCardsPage} name="cards" />
+        </Set>
       </PrivateSet>
     </Router>
   )

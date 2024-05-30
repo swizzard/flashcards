@@ -3,18 +3,20 @@ import type { QueryResolvers, MutationResolvers } from 'types/graphql'
 import { db } from 'src/lib/db'
 
 export const stacks: QueryResolvers['stacks'] = () => {
-  return db.stack.findMany()
+  return db.stack.findMany({ where: { userId: context.currentUser.id } })
 }
 
 export const stack: QueryResolvers['stack'] = ({ id }) => {
   return db.stack.findUnique({
-    where: { id },
+    where: { id, userId: context.currentUser.id },
   })
 }
 
-export const createStack: MutationResolvers['createStack'] = ({ input }) => {
+export const createStack: MutationResolvers['createStack'] = ({
+  input: { title },
+}) => {
   return db.stack.create({
-    data: { ...input, user: context.currentUser.id },
+    data: { title, userId: context.currentUser.id as string },
   })
 }
 
@@ -24,13 +26,13 @@ export const updateStack: MutationResolvers['updateStack'] = ({
 }) => {
   return db.stack.update({
     data: input,
-    where: { id },
+    where: { id, userId: context.currentUser.id },
   })
 }
 
 export const deleteStack: MutationResolvers['deleteStack'] = ({ id }) => {
   return db.stack.delete({
-    where: { id },
+    where: { id, userId: context.currentUser.id },
   })
 }
 

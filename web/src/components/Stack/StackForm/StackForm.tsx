@@ -51,24 +51,6 @@ const StackForm = (props: StackFormProps) => {
 
         <FieldError name="title" className="rw-field-error" />
 
-        <Label
-          name="userId"
-          className="rw-label"
-          errorClassName="rw-label rw-label-error"
-        >
-          User id
-        </Label>
-
-        <TextField
-          name="userId"
-          defaultValue={props.stack?.userId}
-          className="rw-input"
-          errorClassName="rw-input rw-input-error"
-          validation={{ required: true }}
-        />
-
-        <FieldError name="userId" className="rw-field-error" />
-
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
