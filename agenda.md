@@ -1,0 +1,49 @@
+# to do etc
+
+- [ ] db models
+  - [ ] user
+    - id uuid not null
+    - external_id text not null
+    - HAS MANY `stack`s
+  - [ ] stack
+    - id uuid not null
+    - user_id uuid not null references user(id)
+    - title text
+    - HAS MANY `card`s
+  - [ ] card
+    - id uuid not null
+    - stack_id uuid not null references stack(id)
+    - front_text text
+    - front_image text
+    - back text
+    - constraint -- at least one of front_text or front_image
+- [ ] ux
+  - [x] login etc
+  - [ ] edit mode (default)
+    - [ ] dashboard
+      - [ ] all user stacks w/titles & # of cards
+        - [ ] ux
+        - [ ] gql
+        - [ ] resolver
+      - [ ] stack CRUD ux
+    - [ ] stack
+      - [ ] create
+      - [ ] delete
+      - [ ] edit
+        - [ ] title
+        - [ ] card
+          - [ ] add
+          - [ ] delete
+          - [ ] edit
+  - [ ] play mode
+    - [ ] stack of unanswered
+    - [ ] stack of correct
+    - [ ] stack of incorrect
+    - [ ] current card
+    - [ ] flip card
+    - [ ] move to correct or incorrect
+    - [ ] next card (move current card to incorrect w/o flip)
+    - [ ] end game
+    - [ ] restart with all
+    - [ ] restart with incorrect
+    - [ ] restart with correct
