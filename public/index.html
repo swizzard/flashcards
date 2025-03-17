@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="description" content="bangla flashcards" />
+  <meta property="og:description" content="bangla flashcards" />
+  <meta property="twitter:description" content="bangla flashcards" />
+  <meta property="og:image" content="" />
+  <meta property="twitter:image" content="" />
+  <title>Bengali Flashcards</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+  <div id="content">
+    <div>
+      <h1>Bengali Flashcards</h1>
+    </div>
+    <div>
+      <fieldset>
+        <legend>select chapter</legend>
+        <div id="stackSelect"></div>
+      </fieldset>
+    </div>
+    <div id="card">
+      <div id="innerCard"></div>
+    </div>
+    <div id="buttons">
+      <button type="button" id="incorrect">incorrect</button>
+      <button type="button" id="correct">correct</button>
+    </div>
+    <div>
+      <label for="reverse">Reverse Mode</label>
+      <input type="checkbox" id="reverse" name="reverse" value="back"/>
+    </div>
+    <div id="about">
+      <details>
+        <summary>how-to</summary>
+        <p>clicking on the card flips from front to back</p>
+        <p><code>incorrect</code> will move the card to the back of the current stack</p>
+        <p><code>correct</code> will remove the card from the current stack</p>
+        <p>what <code>correct</code> and <code>incorrect</code> mean is up to you</p>
+        <p>when the current stack is emtpy, you will be alerted and it will reset</p>
+        <p>switch between stacks using the <code>select chapter</code> radio buttons</p>
+        <p>the <code>Reverse Mode</code> checkbox toggles <code>Reverse Mode</code>, displaying the backs of cards first</p>
+      </details>
+      <details>
+        <summary>about</summary>
+        <p><a href="https://swizzard.pizza" title="my homepage" target="_blank">sam raker</a> made this website to help
+          him learn বাংলা (bangla/bengali.)</p>
+        <p>bangla vocabulary, romanization, and english translation are taken from <a
+            href="https://archive.org/details/bengalicompletec0000radi"
+            title="archive dot org copy of Complete Bengali by William Radice" target="_blank">Complete Bengali by
+            William Radice</a>. no copyright is claimed.</p>
+        <p>as of <time datetime="2025-05-12T14:05:00">may 12, 2025</time> the list contains all words through
+          unit <strong>12</strong> and most of the words in unit <strong>14</strong>.</p>
+        <p>vocab in the <code>mango</code> chapters is adapted from the <a href="https://mangolanguages.com"
+            title="mango languages homepage" target="_blank">mango languages</a> bengali course. no copyright is claimed
+        </p>
+        <p>translation of terms in the <code>misc</code> chapter was done using google translate and/or wiktionary.</p>
+        <p>any mistakes are the fault of sam raker. please <a href="https://bsky.app/profile/swizzard.pizza"
+            title="on bluesky" target="_blank">let him know</a> if you see any. also, feel free to ask if you're
+          confused by the nomenclature used in the <code>pronouns</code> chapter.</p>
+      </details>
+      <details>
+        <summary>d.i.y.</summary>
+        <p>it's just html, css, and vanilla js.</p>
+        <p>fork <a href="https://github.com/swizzard/flashcards" title="the repo, on github" target="_blank">the
+            repo</a> and replace the <code>front</code> and <code>back</code> of the objects in <a
+            href="https://github.com/swizzard/flashcards/blob/main/public/cards.mjs" title="cards.mjs"
+            target="_blank"><code>cards.mjs</code></a> (you'll probably want to change the <a
+            href="https://github.com/swizzard/flashcards/blob/main/public/index.html" title="index.html"
+            target="_blank">title</a> too)
+        </p>
+        <p>host your own flashcards on e.g. <a href="https://netlify.com" title="netlify, an adequate hosting service"
+            target="_blank">netlify</a>, or you can run it locally with e.g. <a
+            href="https://github.com/devraymondsh/static-file-http-server"
+            title="static-file-http-server, a pretty good static file http server"
+            target="_blank">static-file-http-server</a>.
+        </p>
+      </details>
+    </div>
+    <script type="module" src="./index.mjs"></script>
+</body>
+
+</html>

@@ -1,0 +1,6 @@
+# Local Netlify folder
+.netlify
+
+vocab.txt
+pronouns.txt
+cards.json
