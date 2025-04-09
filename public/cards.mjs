@@ -34,7 +34,7 @@ const cards = [
   },
   { front: "কে ডাকছে", back: "ke ɖakche?\nwho's calling?" },
   { front: "ছটায় ফিরে এসো", back: "chɔtay phire eso\ncome back at six" },
-  { front: "একটু দাঁড়ান", back: "ekʈu dɑ̃ran\n(please) wait a little" },
+  { front: "একটু দাঁড়ান", back: "ekʈu dɑ̃ɽan\n(please) wait a little" },
   { front: "তুমি কোথায় থাক?", back: "tumi kothay thakô?\nwhere do you live?" },
   { front: "তেল ফুরিয়ে গেছে", back: "tel phuyriye gæche\nthe oil's run out" },
   { front: "এখানে থাম", back: "ekhane thamô\nstop here" },
