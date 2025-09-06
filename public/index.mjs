@@ -17,10 +17,10 @@ function main() {
   let currLabel;
   let currCard;
 
-  const { currStacks, incorrects, stacks, $radios } = initStacks(cards);
+  const { currStacks, incorrects, stacks, $select } = initStacks(cards);
 
   // set handlers
-  $radios.addEventListener("change", onChangeStack);
+  $select.addEventListener("change", onChangeStack);
   $card.addEventListener("click", onFlipCard);
   $correct.addEventListener("click", onCorrect);
   $incorrect.addEventListener("click", onIncorrect);
@@ -29,7 +29,7 @@ function main() {
   // start on 'all'
 
   $card.dataset.side = currFront;
-  $radios.querySelector(`input[value='${all}']`).click();
+  changeStack(all);
 
   function popCard() {
     if (currStacks[currLabel].length === 0) {
@@ -108,14 +108,14 @@ function main() {
   }
 
   function initStacks(cards) {
-    const $radios = document.getElementById("stackSelect");
+    const $select = document.getElementById("stackSelect");
     const stacks = {};
     const currStacks = {};
     const incorrects = { [all]: [] };
     const allCards = [];
-    const { $rad: $allRad, $label: $allLabel } = mkRadio(all);
-    $radios.append($allRad);
-    $radios.append($allLabel);
+    const $allOpt = mkSelect(all);
+    $allOpt.selected = true;
+    $select.append($allOpt);
     for (const [label, stack] of Object.entries(cards)) {
       incorrects[label] = [];
       const s = [...stack];
@@ -123,27 +123,20 @@ function main() {
       stacks[label] = [...s];
       shuffle(s);
       currStacks[label] = s;
-      const { $rad, $label } = mkRadio(label);
-      $radios.append($rad);
-      $radios.append($label);
+      const $opt = mkSelect(label);
+      $select.append($opt);
     }
     stacks[all] = [...allCards];
     shuffle(allCards);
     currStacks[all] = allCards;
-    return { currStacks, incorrects, stacks, $radios };
+    return { currStacks, incorrects, stacks, $select };
   }
 
-  function mkRadio(label) {
-    const $rad = document.createElement("input");
-    const radId = `stack-${label}`;
-    $rad.setAttribute("id", radId);
-    $rad.setAttribute("type", "radio");
-    $rad.setAttribute("name", "stacks");
-    $rad.setAttribute("value", label);
-    const $label = document.createElement("label");
-    $label.setAttribute("for", radId);
-    $label.textContent = label;
-    return { $rad, $label };
+  function mkSelect(label) {
+    const $opt = document.createElement("option");
+    $opt.value = label;
+    $opt.text = label;
+    return $opt;
   }
 
   // from https://stackoverflow.com/a/12646864
