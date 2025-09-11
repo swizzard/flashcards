@@ -2,9 +2,11 @@ import cards from "./cards.mjs";
 
 function main() {
   // magic strings
-  const all = "all";
   const back = "back";
   const front = "front";
+  const all = "all";
+  // stacks starting with these strings will be aggregated
+  const specials = [];
 
   // dom elements
   const $card = document.getElementById("card");
@@ -112,24 +114,37 @@ function main() {
     const stacks = {};
     const currStacks = {};
     const incorrects = { [all]: [] };
+    const specialStacks = {};
     const allCards = [];
-    const $allOpt = mkSelect(all);
-    $allOpt.selected = true;
-    $select.append($allOpt);
+    $select.append(mkSelect(all));
+    specials.forEach((k) => {
+      incorrects[k] = [];
+      specialStacks[k] = [];
+      $select.append(mkSelect(k));
+    });
     for (const [label, stack] of Object.entries(cards)) {
       incorrects[label] = [];
       const s = [...stack];
-      allCards.push(...s);
-      stacks[label] = [...s];
       shuffle(s);
+      allCards.push(...s);
+      specials.forEach((k) => {
+        if (label.startsWith(k)) {
+          specialStacks[k].push(...s);
+        }
+      });
+      stacks[label] = [...s];
       currStacks[label] = s;
       const $opt = mkSelect(label);
       $select.append($opt);
     }
     stacks[all] = [...allCards];
+    for (const [label, stack] of Object.entries(specialStacks)) {
+      shuffle(stack);
+      stacks[label] = [...stack];
+      currStacks[label] = [...stack];
+    }
     shuffle(allCards);
     currStacks[all] = allCards;
-    // displayCard();
     return { currStacks, incorrects, stacks, $select };
   }
 
